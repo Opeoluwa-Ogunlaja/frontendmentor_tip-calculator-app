@@ -1,0 +1,17 @@
+{
+  "name": "frontendmentor_tip-calculator-app",
+  "version": "1.0.0",
+  "description": "![Design preview for the Tip calculator app coding challenge](./design/desktop-preview.jpg)",
+  "source": "./index.html",
+  "scripts": {
+    "start": "parcel",
+    "build": "parcel build",
+    "watch-scss": "sass ./sass/style.scss style.css --watch"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "parcel": "^2.6.2",
+    "sass": "^1.54.0"
+  }
+}

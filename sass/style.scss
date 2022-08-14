@@ -1,0 +1,321 @@
+@import './abstracts/colors';
+@import './abstracts/variables';
+@import './abstracts/mixins';
+
+@import './reset';
+
+.logo-container{
+    @include center-stuff(max-content);
+}
+
+.tip-calculator{
+    background-color: $white;
+    @include px(1.5rem);
+    @include py(2rem);
+    border-radius: 1.5rem 1.5rem 0 0;
+    min-height: 100%;
+    height: max-content;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    min-width: max-content;
+
+    @include big{
+        @include px(2rem);
+        @include center-stuff(60%);
+        border-radius: 1.5rem;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include xsm{
+        @include px(.5rem);
+    }
+}
+
+.calculator{
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    @include py(initial);
+
+    @include big{
+        gap: 2rem;
+        @include py(.25rem);
+    }
+}
+
+.calculator__input-container{
+    display: flex;
+    flex-direction: column;
+    gap: .25rem;
+    width: 100%;
+
+    &[data-error="false"]{
+        .error-text{
+            clip-path: inset(0 100% 0 0);
+        }
+    }
+
+    &[data-error="true"]{
+        .error-text{
+            clip-path: inset(0 0 0 0);
+        }
+
+        .calculator__input{
+            outline: 2px solid $error-text;
+        }
+    }
+
+    @include big{
+
+    }
+}
+
+.calculator__input-label{
+    color: $dark-grayish-cyan;
+    @include big{
+
+    }
+}
+
+.calculator__input{
+    @include py(.25rem);
+    @include px(.5rem);
+    font-size: $input-font-size;
+    color: $very-dark-cyan;
+    display: inline-block;
+    text-align: end;
+    @include no-border(.25rem);
+    background-color: $very-light-grayish-cyan;
+    width: 100%;
+    transition: outline .5s ease;
+
+    &:focus, &:hover, &:focus-within{
+        outline: 2px solid $strong-cyan;
+    }
+
+    &::placeholder{
+        color: lighten($grayish-cyan, 20);
+    }
+
+    @include big{
+
+    }
+}
+
+.icon-person{
+    position: relative;
+
+    &::before{
+        position: absolute;
+        inset: 0 auto 0 0;
+        margin-top: 1.75rem;
+        margin-left: 2.25rem;
+        content: '';
+        zoom: 50%;
+        width: 2rem;
+        height: 2rem;
+        @include pseudo-icon('./images/icon-person.svg', lighten($grayish-cyan, 20));
+    }
+}
+
+.icon-dollar{
+    position: relative;
+
+    &::before{
+        position: absolute;
+        inset: 0 auto 0 0;
+        margin-top: 2.5rem;
+        margin-left: 2.25rem;
+        content: '';
+        zoom: 30%;
+        width: 2.5rem;
+        height: 4rem;
+        @include pseudo-icon('./images/icon-dollar.svg', lighten($grayish-cyan, 20));
+    }
+}
+
+.icon-person .icon-dollar{
+    flex: 0;
+}
+
+.justify-space-between{
+    display: flex;
+    justify-content: space-between;
+}
+
+.error-text{
+    display: block;
+    clip-path: inset(0 100% 0 0);
+    color: $error-text;
+    transition: clip-path .3ms ease;
+}
+
+.calculator__tip-btns--grid{
+    margin-top: .25rem;
+    display: grid;
+    grid-template-columns: repeat(2, 50%);
+    gap: .75rem;
+    grid-auto-columns: 1fr;
+    width: 95%;
+
+    @include big{
+        width: initial;
+        grid-template-columns: repeat(3, 31%);
+    }
+}
+
+.calculator__tip-btn{
+    @include py(.5rem);
+    @include no-border(.25rem);
+    background-color: $very-dark-cyan;
+    color: $white;
+    font-size: 1.25rem;
+    box-sizing: border-box;
+
+    &:hover{
+        background-color: $light-grayish-cyan;
+        color: $very-dark-cyan;
+    }
+
+    @include big{
+
+    }
+}
+
+.btn--active{
+    background-color: $strong-cyan;
+    color: $very-dark-cyan;
+
+    @include big{
+
+    }
+}
+
+.custom-field{
+    @include py(.5rem);
+    @include no-border(.25rem);
+    color: $very-dark-cyan;
+    background-color: $very-light-grayish-cyan;
+    font-size: 1.25rem;
+    box-sizing: border-box;
+    text-align: end;
+    @include px(.5rem);
+
+    &::placeholder{
+        font-size: 1.25rem;
+    }
+
+    &:focus, &:hover, &:focus-within{
+        outline: 2px solid $strong-cyan;
+    }
+
+    @include big{
+        width: 100% !important;
+        @include px(15%);
+    }
+}
+
+
+
+.display{
+    background-color: $very-dark-cyan;
+    padding: 1.25rem;
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: .5rem;
+
+    @include big{
+
+    }
+}
+
+.display__amounts{
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+    @include big{
+
+    }
+}
+
+.display__amount--container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.display__amount--title{
+    color: $white;
+
+    span{
+        display: block;
+        color: $grayish-cyan;
+        font-size: .75rem;
+
+        @include big{
+
+        }
+    }
+
+    @include big{
+
+    }
+}
+
+.display__amount--price{
+
+    .price{
+        @include font(2.25rem);
+        vertical-align: middle;
+        color: $strong-cyan;
+
+        @include big{
+            @include font(2.5rem);
+        }
+    }
+
+    @include big{
+
+    }
+}
+
+.display__reset{
+    width: 100%;
+
+    .reset-btn{
+        width: 100%;
+        @include py(.5rem);
+        background-color: $strong-cyan;
+        @include no-border(.5rem);
+        text-transform: uppercase;
+        color: $very-dark-cyan;
+        cursor: pointer;
+
+        &:hover{
+            background-color: $light-grayish-cyan;
+        }
+
+        &.disabled{
+            background-color: lighten($very-dark-cyan, 8);
+            pointer-events: none;
+        }
+
+        @include big{
+            letter-spacing: 1px;
+            font-size: 1.25rem;
+        }
+    }
+
+    @include big{
+
+    }
+}
+
+.outlined{
+    outline: 2px solid $strong-cyan !important;
+}
